@@ -237,6 +237,16 @@ fitRf$bestTune[[&quot;mtry&quot;]]</code></pre>
 <p><img src="presentation_files/figure-html/rf-1.png" width="672" /></p>
 <p>Caret tested 10 values of mtry, using the caret default of 25-fold resampling, to determine the best model fit for random forest and arrived at 8, close to the default value of sqrt(number of predictors) provided for classification problems by the randomForest library. However, the final fit cannot be called universally applicable until tested against device readings from users other than the six subjects of this study.</p>
 </div>
+<div id="predicting-for-the-final-test-set" class="section level2">
+<h2>Predicting for the final test set</h2>
+<p>R code to download the final test set and run the prediction using the random forest model is shown but not evaluated.</p>
+<pre class="r"><code>if(!file.exists(&quot;pml-testing.csv&quot;)) {
+  download.file(&quot;https://d396qusza40orc.cloudfront.net/predmachlearn/pml-testing.csv&quot;, &quot;pml-testing.csv&quot;)
+}
+testingRaw &lt;- read.csv(&quot;pml-testing.csv&quot;)
+testingResults &lt;- predict(fitRf, newdata = testingRaw)
+testingResults</code></pre>
+</div>
 
 
 
